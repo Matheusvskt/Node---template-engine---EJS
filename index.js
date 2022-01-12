@@ -1,26 +1,19 @@
 const express = require('express');
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
 let user = {
-    id: 0,
-    name: "Matheus vieira",
-    phone: "(34)444-888-55",
+    name:"Math Vieira",
+    phone:"(23)4545454/5445"
 }
+app.set("views", path.join(__dirname, 'views'));
+app.set("view engine", "ejs"),
 
-function render(data, obj){
-    for(let key in obj){
-        data = data.replace(`{{{${key}}}}`, obj[key])
-    }
-    return data;
-}
 app.get("/", (req, res) => {
-    fs.readFile('./templates/user.html', 'UTF8', (err, data) => {
-        if (!err) {
-    
-            res.send(render(data,user))
-        }
-    })
+
+    res.render('user.ejs', user)
+
 })
 
 const PORT = 5000;
