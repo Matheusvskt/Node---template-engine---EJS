@@ -25,12 +25,15 @@ app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "ejs"),
 
     app.get("/", (req, res) => {
+        res.render('user', { users });
 
-        res.render('user.ejs', {users})
+    });
 
-    })
+app.get("/about", (req, res) => {
+    res.render('about');
+});
 
-const PORT = 5000;
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server rodando na porta: ${PORT}`)
-})
+    console.log(`Server rodando na porta: ${PORT}`);
+});
